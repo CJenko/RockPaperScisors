@@ -1,15 +1,63 @@
 <html>
+    <p1>CHRIS JENKINS</p1>
     <script>
-function computerPlay(){ 
+
+// set scores to 0 for both players
+let playerScore = 0;
+let computerScore = 0;
+
+//randomly selects RPS for computer
+function computerPlay() {   
+        let choice = ['','ROCK', 'PAPER','SCISSORS'];
+        return choice[Math.floor((Math.random() * 3)+1)];
+    }
+
+//Prompt for player selection
+function playerGo() { 
+        let playerPlay = prompt("Please enter Rock, Paper or Scissors");
+        return playerPlay.toUpperCase();
+    }
+
+// plays 1 round and returns draw or winner
+function playOneRound() { 
+    const PC = computerPlay();
+    const HUMAN = playerGo();
     
+    if (PC === HUMAN)
+         {   
+             return ("Computer plays: " + PC + " You played: " + HUMAN + "......Its a DRAW!!!")}
+
+    else if ((HUMAN === "ROCK") && (PC === "SCISSORS") || (HUMAN === "PAPER") && (PC === "ROCK") || (HUMAN === "SCISSORS") && (PC === "PAPER"))
+        { playerScore++
+
+            return ("Computer plays: " + PC + " You played: " + HUMAN + "......You WIN!!!") }
+    else 
+        {computerScore++
+        return ("Computer plays: " + PC + " You played: " + HUMAN + "......Computer WINS!!!")}
+    }
+
+
+
+function FiveRounds (){ //plays 5 rounds and returns score
+    for (roundNo = 1; roundNo < 6; roundNo++){
+    
+        console.log("Round: " + roundNo + " " + playOneRound() + " SCORES: Human "+playerScore+ " Computer " + computerScore)     
+    }   
+    if (playerScore == computerScore){
+        console.log("ITS A DRAW")
+    }
+    else if (playerScore>computerScore){
+        console.log("YOU WIN"+ "FINAL SCORE: Human "+playerScore+ " Computer " + computerScore)
+    }
+   else
+   {console.log("YOU LOSER!!!" + "FINAL SCORE: Human "+playerScore+ " Computer " + computerScore)
+   }
+
 }
+FiveRounds()
 
-function playerRound(playerGo, computerGo){
 
-}
 
-const playerGo = 'paper'
-const computerGo = computerPlay()
-console.log(playerRound(playerGo, computerGo))
+
     </script>
 </html>    
